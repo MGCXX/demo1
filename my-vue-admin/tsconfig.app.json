@@ -1,0 +1,23 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "jsx": "preserve",  // 如果使用 Vue JSX
+    "paths": {
+      "@/*":["./src/*"]
+    },
+    "moduleResolution": "bundler"  // 推荐与 Vite 搭配使用
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",  // 如果使用 TSX
+    "src/**/*.vue",
+    "src/env.d.ts"
+, "src/router/guard.ts"  ],
+  "exclude": ["node_modules"]
+}
