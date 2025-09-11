@@ -46,7 +46,23 @@
             <p class="fl" style="color: #999999;">暂无预警</p>
             <div class="fr">
               <el-button>维保记录</el-button>
-              <el-button type="primary">使用记录</el-button>
+                <el-popover :width="300" title="使用记录"  placement="right">
+                  <template #reference>
+                    <el-button type="primary">使用记录</el-button>
+                  </template>
+                  <el-timeline style="max-width: 600px">
+                    <el-timeline-item
+                      v-for="(i, index) in item.record"
+                      :key="index"
+                      :timestamp="i.time"
+                      :hollow="true"
+                      type="primary"
+                    >
+                      {{ i.msg }}
+                    </el-timeline-item>
+                  </el-timeline>
+                </el-popover>
+
             </div>
 
           </div>
@@ -59,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onMounted, computed, watch } from "vue"
+import {  ref, onMounted, computed, watch } from "vue"
 import { getcurrentList } from "@/api/chargingstation/tabledata"
 import free from "@/assets/free.png"
 import outline from "@/assets/outline.png"
@@ -70,15 +86,11 @@ const select = ref<any>([])
 const dataList = ref<any>([])
 const dataListCopy = ref<any>([])
 const loadData = async () => {
-
   try {
     const { data } = await getcurrentList()
     select.value = data
     dataList.value = data[0].list // 保存原始数据
     dataListCopy.value = data[0].list  //做列表渲染
-    console.log(select.value, "我是")
-    console.log(dataListCopy.value, "杀杀杀")
-
   } catch (error) {
     console.log(error)
   }
@@ -93,7 +105,6 @@ function checkCount(num: number) {
 const allCount = computed(() => checkCount(1) + checkCount(2) + checkCount(3) + checkCount(4) + checkCount(5) + checkCount(6))
 const activeName = ref(0)
 const handleClick = () => {
-  console.log('当前 activeName:', activeName.value)
   if (activeName.value === 0) {
     dataListCopy.value = dataList.value
   } else {
@@ -102,12 +113,12 @@ const handleClick = () => {
 }
 
 
-watch(name,()=>{
-  console.log(name.value,"我是选项",select.value.filter((item:any)=>item.name==name.value))
-  const res=select.value.filter((item:any)=>item.name==name.value)
-  dataList.value=res[0].list
-  dataListCopy.value=res[0].list
-  activeName.value=0
+watch(name, () => {
+  console.log(name.value, "我是选项", select.value.filter((item: any) => item.name == name.value))
+  const res = select.value.filter((item: any) => item.name == name.value)
+  dataList.value = res[0].list
+  dataListCopy.value = res[0].list
+  activeName.value = 0
 })
 
 onMounted(() => {

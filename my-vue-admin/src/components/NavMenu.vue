@@ -14,7 +14,7 @@ import MenuItem from "./MenuItem.vue"
 import logo from "@/assets/logo.png"
 const userStore=useUserStore()
 const menuitems=userStore.menu
-console.log(menuitems)
+
 
 </script>
 

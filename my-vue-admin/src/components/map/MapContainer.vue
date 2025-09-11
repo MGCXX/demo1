@@ -37,7 +37,6 @@ onMounted(() => {
                         position: item.position, //基点位置
                         offset: new AMap.Pixel(-13, -30), //相对于基点的偏移位
                     });
-                    console.log(item.title)
                    
                     marker.on('click', () => {
                         infoWindow.setContent(`
@@ -53,19 +52,11 @@ onMounted(() => {
                             </div>
                         `);
                         infoWindow.open(map, marker.getPosition())
-                        console.log('信息窗体打开位置:', marker.getPosition());
                     })
                     map.add(marker);
                 })
 
             })
-
-
-
-
-
-
-
         })
         .catch((e) => {
             console.log(e);

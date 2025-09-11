@@ -8,7 +8,7 @@ export function useTable(url:string,params:any){
         page:1,
         pageSize:10
     })
-    const totals=ref(null)
+    const totals=ref(0)
     const loadData=async ()=>{
         loading.value=true
         try{

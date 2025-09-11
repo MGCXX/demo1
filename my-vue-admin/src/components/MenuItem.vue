@@ -17,7 +17,7 @@
 </template>
 
 <script scoped lang="ts">
-import { defineComponent, onUpdated, } from 'vue';
+import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 import type { MenuItem } from "@/type/user"
 import {useTagsStore} from "@/store/tags"
@@ -52,7 +52,7 @@ export default defineComponent({
 .el-menu-item:hover{
     background-color:rgb(34, 136, 255) !important;color: #fff !important ;
 }
-::v-deep .el-sub-menu__title:hover{
+:deep(.el-sub-menu__title:hover){
     background-color:rgb(34, 136, 255) !important;color: #fff !important ;
 }
 

@@ -54,7 +54,7 @@
 
 <script setup lang="ts">
 import MapContainer from "@/components/map/MapContainer.vue"
-import { reactive, ref } from "vue"
+import { reactive } from "vue"
 const dataList = reactive({
   name: "",
   address: "",

@@ -1,5 +1,5 @@
 <template>
-    <div class="bg">
+    <div class="bg" :style="{ backgroundImage: `url(${bg})` }">
         <div class="login">
             <div class="logo">
                 <img :src="logo" alt="" width="70px" height="70px">
@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+import bg from "@/assets/bg.png";
 import logo from "@/assets/logo.png";
 import { reactive, ref } from "vue";
 import type { FormInstance } from "element-plus";
@@ -34,6 +35,7 @@ interface RuleForm {
     username: string,
     password: string
 }
+
 const ruleForm = reactive<RuleForm>({
     username: "",
     password: ""
@@ -66,7 +68,7 @@ const handleLogin = () => {
 
 <style lang="less" scoped>
 .bg {
-    background-image: url("../src/assets/bg.png");
+    // background-image: url("@/assets/bg.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

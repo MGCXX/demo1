@@ -11,7 +11,14 @@
             </template>
         </el-tab-pane>
     </el-tabs>
-    <router-view/>
+   
+   <RouterView v-slot="{Component}">
+        <KeepAlive>
+            <component :is="Component" v-if="$route.meta.keepAlive"></component>
+        </KeepAlive>
+            <component :is="Component" v-if="!$route.meta.keepAlive"></component>
+   </RouterView>
+
 </template>
 
 <script setup lang="ts">
@@ -19,6 +26,7 @@ import { useTagsStore } from '@/store/tags'
 import { storeToRefs } from 'pinia'
 import {useRouter,useRoute} from "vue-router"
 import { useUserStore } from '@/store/auth'
+
 
 const tagsStore=useTagsStore()
 const userStore=useUserStore()

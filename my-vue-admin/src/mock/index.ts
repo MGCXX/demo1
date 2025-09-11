@@ -45,6 +45,7 @@ const menulist = [
           name: "订单管理",
           url: "/operations/orders",
           icon: "DocumentCopy",
+          meta:{keepAlive:true}
         },
         {
           name: "订单详情",
@@ -160,7 +161,7 @@ const menulist2 = [
 //登录接口
 Mock.mock("https://www.demo.com/login","post",(options:any)=>{
     const {username,password}= JSON.parse(options.body) ;
-    if(username==="admin"&&String(password)==="admin666"){
+    if(username==="admin"&&password==="admin666"){
         return {
             code:200,
             message:"登陆成功",
@@ -173,7 +174,7 @@ Mock.mock("https://www.demo.com/login","post",(options:any)=>{
                 menulist
             }
         }
-    }else if(username==="user"&&String(password)==="user666"){
+    }else if(username==="user"&&password==="user666"){
         return {
             code:200,
             message:"登陆成功",

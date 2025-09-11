@@ -23,10 +23,10 @@ service.interceptors.response.use((response:AxiosResponse)=>{
             message:response.data.message,
             type: 'error',
         });
+        return response.data;
     }else{
         return response.data
     }
-    return response.data
 },(error:AxiosError)=>{
     console.error("请求错误",error.message)
     return Promise.reject(error);

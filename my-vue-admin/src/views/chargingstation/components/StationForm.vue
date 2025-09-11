@@ -134,7 +134,6 @@ const handleSave = () => {
             })
             resetRowData()
             emit("close")
-            console.log(res)
         }
     })
 }

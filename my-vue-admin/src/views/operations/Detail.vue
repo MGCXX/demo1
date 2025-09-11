@@ -1,6 +1,49 @@
 <template>
-  <div>订单详情页面</div>
+  <el-card>
+    <el-descriptions :title="`订单编号：${rowData.orderNo}`">
+      <el-descriptions-item label="订单编号">{{ $route.query.orderNo }}</el-descriptions-item>
+      <el-descriptions-item label="设备编号">{{ rowData.equipmentNo }}</el-descriptions-item>
+      <el-descriptions-item label="订单日期">{{ rowData.date }}</el-descriptions-item>
+      <el-descriptions-item label="站点名称">
+        <el-tag size="small">北京西单充电站</el-tag>
+      </el-descriptions-item>
+      <el-descriptions-item label="开始时间">
+        {{ rowData.startTime }}
+      </el-descriptions-item>
+      <el-descriptions-item label="结束时间">{{ rowData.endTime }}</el-descriptions-item>
+      <el-descriptions-item label="订单金额(元)">{{ rowData.money }}</el-descriptions-item>
+      <el-descriptions-item label="支付方式">{{rowData.pay}}</el-descriptions-item>
+      <el-descriptions-item label="所属城市">北京</el-descriptions-item>
+      <el-descriptions-item label="充电量(度)">86</el-descriptions-item>
+      <el-descriptions-item label="充电设备">充电桩(快充)</el-descriptions-item>
+      <el-descriptions-item label="充电总时长(小时)">2</el-descriptions-item>
+      <el-descriptions-item label="负责人姓名">王科</el-descriptions-item>
+      <el-descriptions-item label="负责人电话">18888888888</el-descriptions-item>
+      <el-descriptions-item label="维保人员姓名">刘来</el-descriptions-item>
+      <el-descriptions-item label="维保人员电话">17777777777</el-descriptions-item>
+      <el-descriptions-item label="订单状态">
+{{rowData.status == '2' ? '进行中' : (rowData.status == '3' ? '已完成' : '异常') }}</el-descriptions-item>
+      <el-descriptions-item label="服务费(元)">8.0</el-descriptions-item>
+      <el-descriptions-item label="停车费(元)">4.0</el-descriptions-item>
+      <el-descriptions-item label="电费(元)">54.0</el-descriptions-item>
+      <el-descriptions-item label="收费信息">
+        电费+服务费+停车费，高峰时段费用位2.3元1度，停车费2元/小时，服务费5元/次
+      </el-descriptions-item>
+      <el-descriptions-item label="备注">暂无</el-descriptions-item>
+
+    </el-descriptions>
+  </el-card>
+
 </template>
 
 <script setup lang="ts">
-</script> 
+import { useTabDetail } from "@/store/tabDetail"
+import { storeToRefs } from "pinia";
+
+
+const tabDetail = useTabDetail()
+const { rowData } = storeToRefs(tabDetail)
+
+
+
+</script>

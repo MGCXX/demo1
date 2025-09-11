@@ -107,15 +107,15 @@
                         <img :src="progress" />
                         <p>任务进度</p>
                     </el-col>
-                    <el-col :span="6" @click="handle('设备维修', '/alarm', 'Phone')">
+                    <el-col :span="6" @click="handle('报警管理', '/alarm', 'Phone')">
                         <img :src="repair" />
                         <p>设备维修</p>
                     </el-col>
-                    <el-col :span="6" @click="handle('营收占比', '/operations/total', 'Files')">
+                    <el-col :span="6" @click="handle('计费管理', '/operations/total', 'Files')">
                         <img :src="total" />
                         <p>营收占比</p>
                     </el-col>
-                    <el-col :span="6" @click="handle('营收统计', '/operations/orders', 'DataAnalysis')">
+                    <el-col :span="6" @click="handle('订单管理', '/operations/orders', 'DataAnalysis')">
                         <img :src="money" />
                         <p>营收统计</p>
                     </el-col>
@@ -293,7 +293,6 @@ const getChartdata2 = async () => {
     }
     )
     const res = await chartData2()
-    console.log(res, "666666")
     chartOption2.legend.data = res.data.list.map((item: any) => item.name)
     for (let i = 0; i < res.data.list.length; i++) {
         chartOption2.series[i].data = res.data.list[i].data
@@ -330,7 +329,6 @@ const getChartdata3 = async () => {
     })
     const res = await chartData3()
     chartOption3.series[0].data[0].value = res.data.list
-    console.log(chartOption3)
     return chartOption3
 }
 useChart(myChart1, getChartdata1())

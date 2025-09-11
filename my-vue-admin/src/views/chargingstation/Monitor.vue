@@ -100,7 +100,7 @@ import StationForm from "./components/StationForm.vue"
 const loading = ref(false)
 const stationStore = useStationStore()
 const select = ref("name")
-const formParams = reactive({
+const formParams = reactive<{search:string,status:number}>({
   search: "", //用ID 还是 名称查询
   status: 1
 })
@@ -117,9 +117,7 @@ const loadData = async () => {        //[select.value]意思是选择的是ID还
   const res = await getTableData({ [select.value]: formParams.search, status: formParams.status, ...pageInfo })
   tableData.value = res.data.list
   total.value = res.data.total
-  console.log("======", tableData.value)
   loading.value = false
-  console.log(formParams.status,"你妈的")
 }
 
 onMounted(() => {
@@ -143,8 +141,8 @@ function handleEdit(row: RowType) {
 
 function resetForm() {
   select.value = "name"
-  formParams.value.search = ""
-  formParams.value.status = 1
+  formParams.search = ""
+  formParams.status = 1
   pageInfo.page = 1
   pageInfo.pageSize = 10
   loadData()

@@ -10,7 +10,7 @@
 
             <el-dropdown trigger="click" class="ml" @command="handleCommand">
                 <span class="el-dropdown-link">
-                    欢迎您<el-icon class="el-icon--right"><arrow-down /></el-icon>
+                    欢迎您,{{ username }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
                 </span>
                 <template #dropdown>
                     <el-dropdown-menu>
@@ -29,14 +29,21 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store/auth';
+import { storeToRefs } from 'pinia';
+import { useTagsStore } from '@/store/tags';
 
 
 
 const info = ref(0)
 const router = useRouter()
 const userStore = useUserStore()
+const useTags=useTagsStore()
+const {username}=storeToRefs(userStore)
+const {addTags,setCurrentTab}=useTags
 const handleCommand = (command: string) => {
     if (command == "user") {
+        addTags("个人中心","/personal","User")
+        setCurrentTab("个人中心","/personal")
         router.push("/personal")
     } else {
         userStore.logout()
